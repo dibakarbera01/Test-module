@@ -1,6 +1,6 @@
 
 
-```markdown
+
 # Calculator Component
 
 ## Overview
