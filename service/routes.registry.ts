@@ -1,44 +1,47 @@
 const RoutesRegistry = {
-  testGetAllAPI: {
+  getAllBooks: {
     name: "Test Get All API",
-    url: "wrappidall",
+    url: "getAllBooks",
     authRequired: false,
-    entityRef: "testGetAllAPI",
+    entityRef: "getAllBooks",
     reqMethod: "get",
-    controllerRef: "testGetAllFunc",
+    controllerRef: "getAllBooks",
   },
-  testGetAPI: {
-    name: "Test Get  API",
-    url: "wrappid/:id",
-    authRequired: false,
-    entityRef: "testGetAllAPI",
-    reqMethod: "get",
-    controllerRef: "testGetFunc",
-  },
-  testPostAPI: {
+  createAllBooks: {
     name: "Test Get All API",
-    url: "wrappid",
+    url: "createAllBooks",
     authRequired: false,
-    entityRef: "testGetAllAPI",
+    entityRef: "createAllBooks",
     reqMethod: "post",
-    controllerRef: "testPostFunc",
-  },
-  testPutAPI: {
+    controllerRef: "createAllBooks",
+  }
+  ,
+  getSingleBooks: {
     name: "Test Get All API",
-    url: "wrappid/:id",
+    url: "getSingleBooks/:id",
     authRequired: false,
-    entityRef: "testGetAllAPI",
-    reqMethod: "put",
-    controllerRef: "testPutFunc",
+    entityRef: "getSingleBooks",
+    reqMethod: "get",
+    controllerRef: "getSingleBooks",
   },
-  testPatchAPI: {
+  deleteBooks: {
     name: "Test Get All API",
-    url: "wrappid/:id",
+    url: "deleteBooks/:id",
     authRequired: false,
-    entityRef: "testGetAllAPI",
-    reqMethod: "patch",
-    controllerRef: "testPatchFunc",
-  },
+    entityRef: "deleteBooks",
+    reqMethod: "post",
+    controllerRef: "deleteBooks",
+  }
+  ,
+  updateBooks: {
+    name: "Test Get All API",
+    url: "updateBooks/:id",
+    authRequired: false,
+    entityRef: "updateBooks",
+    reqMethod: "post",
+    controllerRef: "updateBooks",
+  }
+ 
 };
 
 export default RoutesRegistry;

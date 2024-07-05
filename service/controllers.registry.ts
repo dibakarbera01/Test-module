@@ -1,11 +1,11 @@
 import * as testController from "./controllers/test.controller";
 
 const ControllersRegistry = {
-  testGetAllFunc: [testController.testGetAllFunc],
-  testGetFunc: [testController.testGetFunc],
-  testPostFunc: [testController.testPostFunc],
-  testPutFunc: [testController.testPutFunc],
-  testPatchFunc: [testController.testPatchFunc],
+  getAllBooks:[testController.getAllBooks],
+  createAllBooks:[testController.createAllBooks],
+  getSingleBooks:[testController.getSingleBooks],
+  deleteBooks:[testController.deleteBooks],
+  updateBooks:[testController.updateBooks]
 };
 
 export default ControllersRegistry;
