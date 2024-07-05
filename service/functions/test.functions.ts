@@ -3,9 +3,9 @@ import { databaseActions } from "@wrappid/service-core";
 /**
  * @returns
  */
-const readTestDataAll = async () => {
+const readBookDataAll = async () => {
   try {
-    const result = await databaseActions.findAll("application", "TestDatas");
+    const result = await databaseActions.findAll("application", "Books");
     return result;
   } catch (error: any) {
     console.log(error);
@@ -13,16 +13,28 @@ const readTestDataAll = async () => {
   }
 };
 
-/**
- *
- * @param {*} req
- * @returns
- */
-const readTestData = async (req: any) => {
+const createBookDataAll = async (req:any) => {
+  
   try {
-    const result = await databaseActions.findOne("application", "TestDatas", {
-      where: { id: req.params.id },
+    const result = await databaseActions.create("application", "Books",{
+      name:req.body["name"],
+      price:req.body["price"],
+      createdAt:Date.now(),
+      updatedAt:Date.now(),
+      
     });
+   
+    return result;
+  } catch (error: any) {
+    console.log(error);
+    throw error;
+  }
+};
+const getSingleBook = async (req:any) => {
+  
+  try {
+    const result = await databaseActions.findByPk("application", "Books",req.params["id"]);
+   
     return result;
   } catch (error: any) {
     console.log(error);
@@ -30,61 +42,35 @@ const readTestData = async (req: any) => {
   }
 };
 
-/**
- *
- * @param {*} req
- * @returns
- */
-const createTestData = async (req: any) => {
+const deleteBook = async (req:any) => {
+  
   try {
-    const data = await databaseActions.create("application", "TestDatas", {
-      name: req.body.data,
+    const result = await databaseActions.delete("application", "Books",{
+      where:{id:req.params["id"]}
     });
-    return data;
+   
+    return result;
   } catch (error: any) {
     console.log(error);
     throw error;
   }
 };
-
-/**
- *
- * @param {*} req
- * @returns
- */
-const updateTestData = async (req: any) => {
+const updateBook = async (req: any) => {
   try {
-    await databaseActions.update(
-      "application",
-      "TestDatas",
+    const result = await databaseActions.update(
+      "application", 
+      "Books",
       {
-        name: { ...req.body },
+        name: req.body["name"],
+        price: req.body["price"],
+        updatedAt: Date.now(),
+        createdAt:Date.now(),
       },
       {
-        where: {
-          id: req.params.id,
-        },
+        where: { id: req.params["id"] }
       }
     );
-  } catch (error: any) {
-    console.log(error);
-    throw error;
-  }
-};
-
-/**
- *
- * @param {*} req
- * @returns
- */
-const deleteTestData = async (req: any) => {
-  try {
-    const data = await databaseActions.delete("application", "TestDatas", {
-      where: {
-        id: req.params.id,
-      },
-    });
-    return data;
+    return result;
   } catch (error: any) {
     console.log(error);
     throw error;
@@ -92,9 +78,9 @@ const deleteTestData = async (req: any) => {
 };
 
 export {
-  readTestDataAll,
-  readTestData,
-  createTestData,
-  updateTestData,
-  deleteTestData,
+  readBookDataAll,
+  createBookDataAll,
+  getSingleBook,
+  deleteBook,
+  updateBook
 };
