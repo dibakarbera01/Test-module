@@ -6,9 +6,11 @@ import * as testFunctions from "../functions/test.functions";
  * @param {*} res
  * @returns
  */
-const testGetAllFunc = async (req: any, res: any) => {
+const getAllBooks = async (req: any, res: any) => {
   try {
-    const data: any = await testFunctions.readTestDataAll();
+  
+    
+    const data: any = await testFunctions.readBookDataAll();
     return res.status(200).json({
       message: "Response Data(•_•) :",
       data,
@@ -18,66 +20,73 @@ const testGetAllFunc = async (req: any, res: any) => {
     return res.status(500).json({ message: "Something went wrong.", error });
   }
 };
-
-/**
- *
- * @param {*} req
- * @param {*} res
- * @returns
- */
-const testGetFunc = async (req: any, res: any) => {
+const createAllBooks = async (req: any, res: any) => {
   try {
-    const data = await testFunctions.readTestData(req);
-    return res.status(200).json({ message: "Response Data(•_•) :", data });
+  
+    const reqData=req.body;
+    console.log(reqData);
+    
+    const data: any = await testFunctions.createBookDataAll(req);
+
+    return res.status(200).json({
+      message: "product added successfully",
+      data,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Something went wrong.", error });
+  }
+};
+const getSingleBooks = async (req: any, res: any) => {
+  try {
+  
+    const id=req.params["id"];
+    console.log(id);
+    
+    
+    const data: any = await testFunctions.getSingleBook(req);
+
+    return res.status(200).json({
+      message: "Single Product fetch  Successfully",
+      data,
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Something went wrong.", error });
   }
 };
 
-/**
- *
- * @param {*} req
- * @param {*} res
- * @returns
- */
-const testPostFunc = async (req: any, res: any) => {
+const deleteBooks = async (req: any, res: any) => {
   try {
-    const data = await testFunctions.createTestData(req);
-    return res.status(200).json({ message: "Data is inserted (•_•) ", data });
+  
+    const id=req.params["id"];
+    console.log(id);
+    
+    
+    const data: any = await testFunctions.deleteBook(req);
+
+    return res.status(200).json({
+      message: "Product Deleted Successfully",
+      data,
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Something went wrong.", error });
   }
 };
-
-/**
- *
- * @param {*} req
- * @param {*} res
- * @returns
- */
-const testPutFunc = async (req: any, res: any) => {
+const updateBooks = async (req: any, res: any) => {
   try {
-    console.log("::---", req.params, "---::");
-    const data = await testFunctions.updateTestData(req);
-    return res.status(200).json({ message: "Data updated (•_•).", data });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: "Something went wrong.", error });
-  }
-};
+  
+    const id=req.params["id"];
+    console.log(id);
+    
+    
+    const data: any = await testFunctions.updateBook(req);
 
-/**
- *
- * @param {*} req
- * @param {*} res
- * @returns
- */
-const testPatchFunc = async (req: any, res: any) => {
-  try {
-    const data = await testFunctions.deleteTestData(req);
-    return res.status(200).json({ message: "Deleted(^_^)", data });
+    return res.status(200).json({
+      message: "Product Update Successfully",
+      data,
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Something went wrong.", error });
@@ -85,9 +94,9 @@ const testPatchFunc = async (req: any, res: any) => {
 };
 
 export {
-  testGetAllFunc,
-  testGetFunc,
-  testPostFunc,
-  testPutFunc,
-  testPatchFunc,
+  getAllBooks,
+  createAllBooks,
+  getSingleBooks,
+  deleteBooks,
+  updateBooks
 };

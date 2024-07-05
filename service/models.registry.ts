@@ -1,9 +1,11 @@
-import { TestDatas } from "./models/TestDatas.model";
+import { Books } from "./models/Books.model";
+
+
 
 const ModelsRegistry = {
-  TestDatas: {
+  Books: {
     database: "application",
-    model: TestDatas,
+    model: Books,
   },
 };
 
